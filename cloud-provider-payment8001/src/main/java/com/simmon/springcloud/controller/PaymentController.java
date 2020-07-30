@@ -1,13 +1,10 @@
 package com.simmon.springcloud.controller;
 
-import com.simmon.springcloud.entities.Payment;
-import com.simmon.springcloud.entities.ResponseResult;
+import com.simmon.entities.Payment;
+import com.simmon.entities.ResponseResult;
 import com.simmon.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -24,7 +21,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/payment/create")
-    public ResponseResult create(Payment payment) {
+    public ResponseResult create(@RequestBody Payment payment) {
         int i = paymentService.create(payment);
         log.info("插入结果:{}", i);
         return new ResponseResult(200, "success");

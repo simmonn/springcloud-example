@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author: simmon
  * @description: TODO
- * @date: 2020/7/27 18:15
+ * @date: 2020/7/29 17:59
  */
 @SpringBootApplication
-public class PaymentStarter {
+public class OrderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PaymentStarter.class, args);
+        SpringApplication.run(OrderApplication.class, args);
     }
 }

@@ -1,6 +1,7 @@
 package com.simmon.springcloud.service;
 
-import com.simmon.springcloud.entities.Payment;
+
+import com.simmon.entities.Payment;
 
 /**
  * @author: simmon
