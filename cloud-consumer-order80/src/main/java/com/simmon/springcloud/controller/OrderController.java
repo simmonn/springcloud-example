@@ -1,7 +1,7 @@
 package com.simmon.springcloud.controller;
 
-import com.simmon.entities.Payment;
-import com.simmon.entities.ResponseResult;
+import com.simmon.springcloud.entities.Payment;
+import com.simmon.springcloud.entities.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;

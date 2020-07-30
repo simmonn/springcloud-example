@@ -1,6 +1,6 @@
 package com.simmon.springcloud.service;
 
-import com.simmon.entities.Payment;
+import com.simmon.springcloud.entities.Payment;
 import com.simmon.springcloud.dao.PaymentDao;
 import org.springframework.stereotype.Service;
 

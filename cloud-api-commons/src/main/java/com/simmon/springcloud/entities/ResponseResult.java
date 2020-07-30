@@ -1,4 +1,4 @@
-package com.simmon.entities;
+package com.simmon.springcloud.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
