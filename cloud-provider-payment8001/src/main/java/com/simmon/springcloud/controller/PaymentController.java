@@ -41,7 +41,7 @@ public class PaymentController {
     public ResponseResult getById(@PathVariable Long id) {
         Payment payment = paymentService.selectById(id);
         log.info("查询结果:{}.port:{}", payment,serverPort);
-        return new ResponseResult(200, "success",payment);
+        return new ResponseResult(200, "端口:"+serverPort,payment);
     }
 
     @GetMapping("/payment/discovery")
@@ -54,5 +54,10 @@ public class PaymentController {
         instances.forEach(instance->{
             log.info(instance.getInstanceId()+instance.getHost()+instance.getPort()+instance.getUri());
         });
+    }
+
+    @GetMapping("/payment/lb")
+    public String lb(){
+        return serverPort;
     }
 }
