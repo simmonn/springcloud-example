@@ -16,5 +16,5 @@ eureka:
 
   server:
     #关闭自我保护模式,保证服务及时被剔除
-    enable-self-preservation: false
-    eviction-interval-timer-in-ms: 2000
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 2000
