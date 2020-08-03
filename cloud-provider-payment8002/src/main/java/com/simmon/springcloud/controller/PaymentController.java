@@ -32,7 +32,7 @@ public class PaymentController {
     }
 
     @GetMapping("/payment/{id}")
-    public ResponseResult getById(@PathVariable Long id) {
+    public ResponseResult getById(@PathVariable("id") Long id) {
         Payment payment = paymentService.selectById(id);
         log.info("查询结果:{}.port:{}", payment,serverPort);
         return new ResponseResult(200, "端口:"+serverPort,payment);
