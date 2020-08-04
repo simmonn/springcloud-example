@@ -22,7 +22,7 @@ public class OrderFeignController {
     @Resource
     public PaymentFeignService paymentFeignService;
 
-    @GetMapping("/consumer/payment/{id}")
+    @GetMapping("/consumer/payment/get/{id}")
     public ResponseResult<Payment> getPayment(@PathVariable Long id) {
         return paymentFeignService.getById(id);
     }
