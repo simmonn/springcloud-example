@@ -28,9 +28,18 @@ public class OrderFeignController {
     }
 
     @GetMapping("/consumer/payment/hystrix/timeout/{id}")
+/*    @HystrixCommand(fallbackMethod = "paymentFeignTimeoutHandler",commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "1000")
+    })*/
     public ResponseResult<Payment> paymentFeignTimeout(@PathVariable Long id){
         //默认超时时间为1秒
         return paymentHystrixService.getByIdTimeoutt(id);
+    }
+
+    public ResponseResult<Payment> paymentFeignTimeoutHandler(@PathVariable Long id) {
+        Payment payment = new Payment();
+        payment.setSerial("调用出错,服务降级");
+        return new ResponseResult<Payment>(200,"服务降级",payment);
     }
 
 }
