@@ -49,4 +49,9 @@ public class PaymentController {
         return new ResponseResult(200, "端口:"+serverPort,payment);
     }
 
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentZCircuit(@PathVariable Integer id) {
+        return paymentService.payCircuitBreaker(id);
+    }
+
 }

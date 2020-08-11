@@ -1,10 +1,12 @@
 package com.simmon.springcloud.service;
 
+import cn.hutool.core.util.IdUtil;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.simmon.springcloud.dao.PaymentDao;
 import com.simmon.springcloud.entities.Payment;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
@@ -56,6 +58,7 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentDao.getPaymentById(id);
     }
 
+
     /**
      * 服务降级的返回值和参数要和服务正常调用的保持一致
      * @param id
@@ -67,4 +70,27 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setSerial("服务降级,超时处理");
         return payment;
     }
+
+
+    @Override
+    @HystrixCommand(fallbackMethod = "payCircuitBreakerFallback", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),//是否开启断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//请求次数
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),//时间窗口期
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")
+    })
+    public String payCircuitBreaker(Integer id) {
+
+        if (id < 0) {
+            throw new RuntimeException("----id 不能为负数-------");
+        }
+
+        String s = IdUtil.simpleUUID();
+        return Thread.currentThread().getName().concat("\t").concat("--调用成功--流水号:").concat(s);
+    }
+
+    public String payCircuitBreakerFallback(@PathVariable Integer id) {
+        return "-------------降级---id不能为负数-------";
+    }
+
 }

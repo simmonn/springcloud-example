@@ -2,6 +2,7 @@ package com.simmon.springcloud.service;
 
 
 import com.simmon.springcloud.entities.Payment;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author: simmon
@@ -15,4 +16,6 @@ public interface PaymentService {
     Payment selectById(Long id);
 
     Payment selectByIdTimeout(Long id);
+
+    public String payCircuitBreaker(@PathVariable Integer id);
 }
